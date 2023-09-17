@@ -13,7 +13,8 @@ export class UserService {
   }
 
   isLogged() {
-
+    //todo
+    return false;
   }
 
   getInfo(){
