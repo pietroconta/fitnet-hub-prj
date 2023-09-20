@@ -9,31 +9,38 @@ export class UserService {
   private static url: string = "http://www.fitnet-api.it";
   //jwt nel ls, se c'è ed è valido si è loggati
   private user: any;
+
   constructor(public http: HttpClient) {
     this.user = null;
   }
 
+
+  setUser(user:User){
+    this.user = user;
+  }
+
+
   isLogged() {
     //todo
-     if(this.user instanceof User) {
+    if (this.user instanceof User) {
       return true;
-     }else return false;
+    } else return false;
   }
 
   getInfo() {
     localStorage.getItem("jwt");
   }
 
-  login(email: string, psw: string) {
+  login(email: string, psw: string, type: string) {
     const httpOptions = {
       headers: new HttpHeaders({
-        "usn_email": email,
-        "usn_psw": psw
+        'Content-Type': 'application/json'
       })
     };
-    return this.http.post(UserService.url + "/login", {
-      "usn_email": email,
-      "usn_psw": psw
+     return this.http.post(UserService.url + "/login", {
+      "email": email,
+      "psw": psw,
+      "type": type
     }, httpOptions);
   }
 
@@ -45,12 +52,12 @@ export class UserService {
       })
     };
     return this.http.post(UserService.url + "/signin", {
-      "usn_email": email,
-      "usn_psw": psw,
-      "usn_birthdate": birthdate,
-      "usn_surname": surname,
-      "usn_username": username,
-      "usn_name": name,
+      "email": email,
+      "psw": psw,
+      "birthdate": birthdate,
+      "surname": surname,
+      "username": username,
+      "name": name,
     }, httpOptions);
   }
 
