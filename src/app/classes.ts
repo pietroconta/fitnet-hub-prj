@@ -2,8 +2,11 @@ import { IonDatetime } from "@ionic/angular";
 
 export class User{
     constructor(private name:string, private surname:string,
-        private birthdate:any, private email:string, private username:string) {
-        
+        private birthdate:any, private email:string, private username:string, private id:string) {
+    }
+
+    getId(){
+        return this.id;
     }
 
     getName(){
@@ -24,4 +27,20 @@ export class User{
     getUsername(){
         return this.username;
     }
+}
+
+export class Trainer extends User{
+    constructor(
+        name: string,
+        surname: string,
+        birthdate: any,
+        email: string,
+        username: string,
+        id: string
+    ) {
+        super(name, surname, birthdate, email, username, id);
+        
+    }
+    
+    
 }

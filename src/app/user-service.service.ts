@@ -8,16 +8,19 @@ export class UserService {
 
   private static url: string = "http://www.fitnet-api.it";
   //jwt nel ls, se c'è ed è valido si è loggati
-  constructor(public http: HttpClient, private loggedUser: User) {
-
+  private user: any;
+  constructor(public http: HttpClient) {
+    this.user = null;
   }
 
   isLogged() {
     //todo
-    return false;
+     if(this.user instanceof User) {
+      return true;
+     }else return false;
   }
 
-  getInfo(){
+  getInfo() {
     localStorage.getItem("jwt");
   }
 
@@ -35,7 +38,7 @@ export class UserService {
   }
 
   signin(email: string, psw: string, birthdate: string, surname: string, name: string,
-    username: string, ) {
+    username: string,) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

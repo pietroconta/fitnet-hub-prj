@@ -1,0 +1,35 @@
+
+
+<ion-content [fullscreen]="true">
+
+  <swiper-container  [slidesPerView]="1"
+  [spaceBetween]="50">
+    <swiper-slide  effect="flip">
+      <div class="swiperIntro">
+        <img src="../assets/images/slider/ph.png">
+        <div>
+          <h1>
+            Welcome!
+          </h1>
+          Grazie per aver scaricato fitnet-hub, questa è una piccolissima guida
+          introduttiva all'uso di quest'app. Scorri per continuare
+        </div>
+      </div>
+    </swiper-slide>
+    <swiper-slide effect="flip">
+      <div class="swiperIntro">
+        <img src="../assets/images/slider/ph.png">
+        <div style="display: flex; flex-direction: column;">
+          <h1 style="margin-bottom: 50px;">
+            Voglio registrarmi come:
+          </h1>
+          <div style="display: grid; grid-template-columns: auto auto; width: 40%; text-align: left; align-self: center;"> 
+            <span style=" justify-self: start;  color:#3880FF" (click)="goTo('login')">Allenatore</span> <ion-icon name="arrow-forward-outline" style="color:#3880FF; font-size: 20px; vertical-align: middle; justify-self: right;"></ion-icon>
+            <span style=" justify-self: start; color:#3880FF" (click)="goTo('home')">Cliente</span> <ion-icon name="arrow-forward-outline" style="color:#3880FF; font-size: 20px; vertical-align: middle; justify-self: right;"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+
+  </swiper-container>
+</ion-content>
