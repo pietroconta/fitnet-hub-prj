@@ -85,7 +85,7 @@ export class UserService {
   }
 
   signin(email: string, psw: string, birthdate: string, surname: string, name: string,
-    username: string,) {
+    username: string, type: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -96,8 +96,9 @@ export class UserService {
       "psw": psw,
       "birthdate": birthdate,
       "surname": surname,
-      "username": username,
       "name": name,
+      "username": username,
+      "type": type
     }, httpOptions);
   }
 

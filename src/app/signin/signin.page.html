@@ -20,7 +20,8 @@
       </ion-item>
 
       <ion-item lines="full">
-        <ion-input label="Retype Email" type="email" placeholder="email@example.com"
+        <ion-input label="Retype Email" type="email"
+          placeholder="email@example.com"
           formControlName="emailConfirm"></ion-input>
       </ion-item>
 
@@ -29,8 +30,27 @@
           placeholder="********"></ion-input>
       </ion-item>
       <ion-item lines="full">
-        <ion-input label="Retype Password" formControlName="passwordConfirm" type="password"
+        <ion-input label="Retype Password" formControlName="passwordConfirm"
+          type="password"
           placeholder="********"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-input label="Name" formControlName="name" type="text"
+        placeholder="Walter"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-input label="Surname" formControlName="surname" type="text"
+        placeholder="White"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-input label="Username" formControlName="username" type="text"
+        placeholder="Heisemberg"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <div>
+          <h3 class="formLabel">Birthdate</h3>
+          <ion-datetime presentation="date" label="Birthdate" formControlName="birthdate" display-format="YYYY-MM-DD"></ion-datetime>
+        </div>
       </ion-item>
       <ion-item lines="full">
         <ion-radio-group formControlName="type" [allowEmptySelection]="false"
@@ -45,7 +65,8 @@
       </ion-item>
 
       <ion-item lines="none">
-       Have an account yet? &nbsp;<span (click)="goToLogin()" class="link" style="font-size: 17px;"> Login</span>
+        Have an account yet? &nbsp;<span (click)="goToLogin()" class="link"
+          style="font-size: 17px;"> Login</span>
       </ion-item>
     </form>
   </div>
