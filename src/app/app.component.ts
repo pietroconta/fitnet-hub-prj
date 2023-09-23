@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private router:Router, private usrService:UserService) {
     if(!usrService.isLogged()){
      this.router.navigate(["slide-screen"]);
-    }/*else if(trnService.isLogged()){this.router.navigate(["/trainerHome"]);}*/
+    }
 
 
   }
