@@ -91,6 +91,15 @@ export class UserService {
         'Content-Type': 'application/json'
       })
     };
+    console.log( {
+      "email": email,
+      "psw": psw,
+      "birthdate": birthdate,
+      "surname": surname,
+      "name": name,
+      "username": username,
+      "type": type
+    });
     return this.http.post(UserService.url + "/signin", {
       "email": email,
       "psw": psw,
