@@ -9,9 +9,9 @@ import { UserService } from '../user.service';
 })
 export class SigninPage implements OnInit {
   ionicForm: FormGroup;
-  public isSigned: boolean;
+  public signing: boolean;
   constructor(public formBuilder: FormBuilder, private router: Router, private uServ: UserService) {
-    this.isSigned = false;
+    this.signing = false;
     this.ionicForm = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(2)]],
       email: [
@@ -28,7 +28,7 @@ export class SigninPage implements OnInit {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
         ],
       ],
-      name:['', [Validators.required, Validators.minLength(1), Validators.maxLength(9)]],
+      name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(9)]],
       surname: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(19)]],
       username: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(9)]],
       birthdate: ['', [Validators.required, this.validateBirthdate]], // Aggiungi la validazione custom
@@ -59,20 +59,26 @@ export class SigninPage implements OnInit {
   signin() {
     const formValues = this.ionicForm.getRawValue();
     if (this.ionicForm.valid && (formValues["email"] === formValues["emailConfirm"] && formValues["password"] === formValues["passwordConfirm"])) {
+      this.signing = true;
       let ms = new Date(formValues["birthdate"]).getTime();
       console.log("ms", ms);
       this.uServ.signin(formValues["email"], formValues["password"], ms + '', formValues["surname"], formValues["name"],
         formValues["username"], formValues["type"]).subscribe({
           next: (response: any) => {
             console.log(response);
+            this.signing = false;
             if (response.result == "success") {
-              this.isSigned = true;
+
               this.router.navigate(["login"]);
             }
           },
 
 
-          error: (error: any) => { console.log(error); }
+          error: (error: any) => { 
+            this.signing = false;
+            console.log(error); 
+          
+          }
         })
     }
   }

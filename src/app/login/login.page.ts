@@ -52,6 +52,12 @@ export class LoginPage implements OnInit {
               response.user.usn_email, response.user.usn_username, response.user.usn_id), response.token, type);
             //  console.log("isLogged?", this.uService.isLogged());
 
+            if (type === "u") {
+              this.router.navigate(["user-dashboard"]);
+            } else {
+              this.router.navigate(["home"]);
+            }
+
           }
 
         },
