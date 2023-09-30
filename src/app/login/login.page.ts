@@ -47,14 +47,17 @@ export class LoginPage implements OnInit {
           if (response.result == "success") {
 
 
-            this.uService.setLoginSession(new User(response.user.usn_name,
-              response.user.usn_surname, response.user.usn_birthdate,
-              response.user.usn_email, response.user.usn_username, response.user.usn_id), response.token, type);
             //  console.log("isLogged?", this.uService.isLogged());
 
             if (type === "u") {
+              this.uService.setLoginSession(new User(response.user.usn_name,
+                response.user.usn_surname, response.user.usn_birthdate,
+                response.user.usn_email, response.user.usn_username, response.user.usn_id), response.token, type);
               this.router.navigate(["user-dashboard"]);
             } else {
+              this.uService.setLoginSession(new User(response.user.trn_name,
+                response.user.trn_surname, response.user.trn_birthdate,
+                response.user.trn_email, response.user.trn_username, response.user.trn_id), response.token, type);
               this.router.navigate(["home"]);
             }
 
