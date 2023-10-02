@@ -45,3 +45,13 @@ h1{
    color: #3565eb;
    font-weight: bold;
 }
+
+.userCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.userCard img{
+    width: 10vh;
+}

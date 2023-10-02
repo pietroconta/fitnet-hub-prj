@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 import { register } from 'swiper/element/bundle';
 register();
 @Component({
@@ -9,7 +9,7 @@ register();
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private router:Router, private usrService:UserService) {
+  constructor(private router:Router, private usrService:AuthService) {
     if(!usrService.isLogged()){
      this.router.navigate(["slide-screen"]);
     }

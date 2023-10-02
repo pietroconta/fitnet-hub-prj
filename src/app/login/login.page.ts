@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../classes';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   ionicForm: FormGroup;
   logging: boolean;
 
-  constructor(private router: Router, private uService: UserService, public formBuilder: FormBuilder) {
+  constructor(private router: Router, private uService: AuthService, public formBuilder: FormBuilder) {
     this.logging = false;
     this.ionicForm = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(2)]],

@@ -5,7 +5,7 @@ import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AuthService {
 
   private static url: string = "http://www.fitnet-api.it";
   //jwt nel ls, se c'è ed è valido si è loggati
@@ -77,7 +77,7 @@ export class UserService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post(UserService.url + "/login", {
+    return this.http.post(AuthService.url + "/login", {
       "email": email,
       "psw": psw,
       "type": type
@@ -100,7 +100,7 @@ export class UserService {
       "username": username,
       "type": type
     });
-    return this.http.post(UserService.url + "/signin", {
+    return this.http.post(AuthService.url + "/signin", {
       "email": email,
       "psw": psw,
       "birthdate": birthdate,

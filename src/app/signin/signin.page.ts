@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.page.html',
@@ -10,7 +10,7 @@ import { UserService } from '../user.service';
 export class SigninPage implements OnInit {
   ionicForm: FormGroup;
   public signing: boolean;
-  constructor(public formBuilder: FormBuilder, private router: Router, private uServ: UserService) {
+  constructor(public formBuilder: FormBuilder, private router: Router, private uServ: AuthService) {
     this.signing = false;
     this.ionicForm = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(2)]],

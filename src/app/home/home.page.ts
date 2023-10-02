@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
+import { TrainerService } from '../trainer.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { UserService } from '../user.service';
 })
 export class HomePage {
 
-  constructor(private uServ:UserService) {
+  constructor(private trainerServ:TrainerService) {
 
     
   }
