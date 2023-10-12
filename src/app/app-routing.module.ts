@@ -18,13 +18,18 @@ const routes: Routes = [
   {
     path: 'signin',
     loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
-  },  {
+  },
+  {
     path: 'user-dashboard',
     loadChildren: () => import('./user-dashboard/user-dashboard.module').then( m => m.UserDashboardPageModule)
   },
   {
     path: 'slide-screen',
     loadChildren: () => import('./slide-screen/slide-screen.module').then( m => m.SlideScreenPageModule)
+  },
+  {
+    path: 'user-trainer-view/:id',
+    loadChildren: () => import('./user-trainer-view/user-trainer-view.module').then( m => m.UserTrainerViewPageModule)
   },
 
 

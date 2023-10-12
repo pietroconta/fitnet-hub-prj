@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  lsKey: "d389smn324!lllla"
+  lsKey: "d389smn324!lllla",
+  url: "http://www.fitnet-api.it"
 };
 
 /*

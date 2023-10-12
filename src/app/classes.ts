@@ -44,3 +44,9 @@ export class Trainer extends User{
     
     
 }
+
+export interface CardData{
+    username: string;
+    imgUri: string;
+    id: string;
+}

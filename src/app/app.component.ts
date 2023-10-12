@@ -12,6 +12,8 @@ export class AppComponent {
   constructor(private router:Router, private usrService:AuthService) {
     if(!usrService.isLogged()){
      this.router.navigate(["slide-screen"]);
+    }else{
+      console.log("logged");
     }
 
 

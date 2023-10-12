@@ -6,8 +6,6 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-
-  private static url: string = "http://www.fitnet-api.it";
   //jwt nel ls, se c'è ed è valido si è loggati
   private user: any;
   private token: string;
@@ -38,6 +36,10 @@ export class AuthService {
     localStorage.clear();
   }
 
+  getLoggedUser(){
+    return this.user;
+  }
+
 
   isLogged() {
     //todo
@@ -58,6 +60,7 @@ export class AuthService {
           this.user = new Trainer(userJSON.user.name, userJSON.user.surname,
             userJSON.user.birthdate, userJSON.user.email, userJSON.user.username, userJSON.user.id);
         }
+        console.log("userID", userJSON.user.id);
         return true;
       }else{
         this.logout();
@@ -77,7 +80,7 @@ export class AuthService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post(AuthService.url + "/login", {
+    return this.http.post(environment.url + "/login", {
       "email": email,
       "psw": psw,
       "type": type
@@ -100,7 +103,7 @@ export class AuthService {
       "username": username,
       "type": type
     });
-    return this.http.post(AuthService.url + "/signin", {
+    return this.http.post(environment.url + "/signin", {
       "email": email,
       "psw": psw,
       "birthdate": birthdate,
