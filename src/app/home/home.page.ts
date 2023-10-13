@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { TrainerService } from '../trainer.service';
 import { CardData } from '../classes';
 import { Router } from '@angular/router';
+import { LsManagerService } from '../ls-manager.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class HomePage {
   public cardDataArray: CardData[] = [];
   @ViewChild('cards', { read: ElementRef }) cards!: ElementRef;
-  constructor(private trainerServ: TrainerService, private renderer: Renderer2, private router:Router) {
+  constructor(private trainerServ: TrainerService, private lsManager:LsManagerService, private renderer: Renderer2, private router:Router) {
 
     trainerServ.getSubscribers().subscribe(
       {
@@ -55,33 +56,6 @@ export class HomePage {
       }
     );
   }
-
-
-  /*
-  updateCardTemplate(arr: CardData[]) {
-    for (let i = 0; i < arr.length; i++) {
-      const cardComponent = this.renderer.createElement("ion-card");
-      cardComponent.classList.add("userCard");
-  
-      cardComponent.innerHTML = `
-        <div>
-          <img src="${arr[i].imgUri}">
-        </div>
-        <ion-card-header>
-          <ion-card-title>${arr[i].username}</ion-card-title>
-        </ion-card-header>
-      `;
-  
-      this.renderer.appendChild(this.cards.nativeElement, cardComponent);
-  
-      // Aggiungi l'evento di click qui
-      this.renderer.listen(cardComponent, 'click', (evt) => {
-        console.log("User clicked");
-        this.router.navigate(["user-trainer-view"]);
-      });
-    }
-
-  }*/
 
   goToUserTrainerView(id : any){
     console.log("click");
