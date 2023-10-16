@@ -9,6 +9,7 @@ import { LsManagerService } from '../ls-manager.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
   public cardDataArray: CardData[] = [];
   @ViewChild('cards', { read: ElementRef }) cards!: ElementRef;
@@ -23,14 +24,11 @@ export class HomePage {
 
           console.log("trainer subscribers lenght", subscribers.length);
 
-          //const cardComponent = this.renderer.createElement('my-card-component');
-
-          // Aggiungi il componente al div
-          // this.renderer.appendChild(this.cards.nativeElement, cardComponent);
           
-
+          this.lsManager.cacheObj(subscribers, "subscribers", 1000);
           for (let i = 0; i < subscribers.length; i++) {
 
+           
             let imgUri = "";
 
             if (subscribers[i].usn_img == "default" || subscribers[i].usn_img == null) {

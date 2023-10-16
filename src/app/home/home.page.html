@@ -15,7 +15,7 @@
 
         <div #cards>
             <ion-card *ngFor="let cardData of cardDataArray" (click)="goToUserTrainerView(cardData.id)" class="userCard">
-                <div>
+                <div class="pholderImg" style="margin-left: 5px;">
                     <img src="{{cardData.imgUri}}">
                 </div>
                 <ion-card-header>
@@ -36,9 +36,13 @@
             <ion-tab-button>
                 <ion-icon name="documents-outline"></ion-icon>
             </ion-tab-button>
+            <ion-tab-button tab="add-subs">
+                <ion-icon name="person-add-outline"></ion-icon>
+            </ion-tab-button>
             <ion-tab-button tab="account">
                 <ion-icon name="person"></ion-icon>
             </ion-tab-button>
+           
 
             <!-- <ion-tab-button tab="settings">
             <ion-icon name="settings"></ion-icon>

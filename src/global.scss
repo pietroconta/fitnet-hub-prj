@@ -71,3 +71,16 @@ h1 {
     font-size: 25px;
     margin-left: 2vh;
 }
+
+.pholderImg {
+    width: 5vh; /* Imposta la larghezza del cerchio */
+    height: 5vh; /* Imposta l'altezza del cerchio (uguali per ottenere un cerchio) */
+    border-radius: 50%; /* Imposta il bordo come un cerchio con il 50% della larghezza/altezza */
+    overflow: hidden;
+  }
+
+  .pholderImg img {
+    width: 100%; /* Fai sì che l'immagine riempia tutto il cerchio */
+    height: 100%; /* Fai sì che l'immagine riempia tutto il cerchio */
+    object-fit: cover; /* Mantieni proporzioni e ritaglia l'immagine per adattarla al cerchio */
+  }
