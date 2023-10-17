@@ -14,9 +14,11 @@ export class HomePage {
   public cardDataArray: CardData[] = [];
   @ViewChild('cards', { read: ElementRef }) cards!: ElementRef;
   constructor(private trainerServ: TrainerService, private lsManager:LsManagerService, private renderer: Renderer2, private router:Router) {
-
+    
     trainerServ.getSubscribers().subscribe(
       {
+
+        //se c'è la cache non fare la richiesta (tempo cacheValido=10 secondi in questo caso)
         next: (response: any) => {
           console.log("response of subscribers", response);
 
@@ -24,8 +26,8 @@ export class HomePage {
 
           console.log("trainer subscribers lenght", subscribers.length);
 
-          
-          this.lsManager.cacheObj(subscribers, "subscribers", 1000);
+          //mettere che se gà c'è la cache non viene ricreta (TODO)
+          this.lsManager.cacheObj(subscribers, "subscribers", 10000);
           for (let i = 0; i < subscribers.length; i++) {
 
            
