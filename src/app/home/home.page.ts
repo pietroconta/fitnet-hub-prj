@@ -13,51 +13,66 @@ import { LsManagerService } from '../ls-manager.service';
 export class HomePage {
   public cardDataArray: CardData[] = [];
   @ViewChild('cards', { read: ElementRef }) cards!: ElementRef;
-  constructor(private trainerServ: TrainerService, private lsManager:LsManagerService, private renderer: Renderer2, private router:Router) {
-    
-    trainerServ.getSubscribers().subscribe(
-      {
+  constructor(private trainerServ: TrainerService, private lsManager: LsManagerService, private renderer: Renderer2, private router: Router) {
 
-        //se c'è la cache non fare la richiesta (tempo cacheValido=10 secondi in questo caso)
-        next: (response: any) => {
-          console.log("response of subscribers", response);
+    let subs = this.lsManager.getObj("subscribers");
+    console.log("lsResponse", subs);
+    if (!subs.item) {
+      trainerServ.getSubscribers().subscribe(
+        {
 
-          let subscribers = response.trainer_clients;
+          //se c'è la cache non fare la richiesta (tempo cacheValido=10 secondi in questo caso)
 
-          console.log("trainer subscribers lenght", subscribers.length);
+          next: (response: any) => {
+            console.log("response of subscribers", response);
 
-          //mettere che se gà c'è la cache non viene ricreta (TODO)
-          this.lsManager.cacheObj(subscribers, "subscribers", 10000);
-          for (let i = 0; i < subscribers.length; i++) {
+            let subscribers = response.trainer_clients;
 
-           
-            let imgUri = "";
+            console.log("trainer subscribers lenght", subscribers.length);
 
-            if (subscribers[i].usn_img == "default" || subscribers[i].usn_img == null) {
-              imgUri = "../assets/images/slider/person-circle-outline.svg";
-            } else {
-              imgUri = subscribers[i].usn_img;
-            }
+            //mettere che se gà c'è la cache non viene ricreta (TODO)
+            this.lsManager.cacheObj(subscribers, "subscribers", 10000);
+            console.log("push retrieved data from call api")
+            this.pushOnCardDataArray(subscribers);
 
-            const newCard: CardData = {
-              username: subscribers[i].usn_username,
-              imgUri: imgUri,
-              id: subscribers[i].usn_id
-            };
-            this.cardDataArray.push(newCard);
+            //this.updateCardTemplate(cardDataArray);
+
+          },
+          error: (error: any) => {
+            console.log("error on get subscribers", error);
           }
-
-          //this.updateCardTemplate(cardDataArray);
-
-        },
-        error: (error: any) => {
-          console.log("error on get subscribers", error);
         }
-      }
-    );
+      );
+
+
+    }else{
+      console.log("push retrieved data from ls")
+      this.pushOnCardDataArray(subs.content);
+    }
   }
 
-  goToUserTrainerView(id : any){
+  pushOnCardDataArray(subscribers:any[]){
+    for (let i = 0; i < subscribers.length; i++) {
+
+
+      let imgUri = "";
+
+      if (subscribers[i].usn_img == "default" || subscribers[i].usn_img == null) {
+        imgUri = "../assets/images/slider/person-circle-outline.svg";
+      } else {
+        imgUri = subscribers[i].usn_img;
+      }
+
+      const newCard: CardData = {
+        username: subscribers[i].usn_username,
+        imgUri: imgUri,
+        id: subscribers[i].usn_id
+      };
+      this.cardDataArray.push(newCard);
+    }
+  }
+
+  goToUserTrainerView(id: any) {
     console.log("click");
     this.router.navigate(["user-trainer-view", id]);
   }
