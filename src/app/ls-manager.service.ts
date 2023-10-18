@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './classes';
 import { ParseError } from '@angular/compiler';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,17 @@ export class LsManagerService {
 
 
 
-  cacheObj(objs: any, key: string, time?: number) {
+  //Inserisce nel ls un oggetto o un array di oggetti, la chiave sarà "CACHE_" + la chiave passata
+  //se si inserisce anche il tempo, l'oggetto nel ls avrà una data di scadenza
+  //se si inserisce sign, l'oggetto nel ls sarà protetto da modifiche da parte dell'utente
+  cacheObj({ objs, key, time, sign }: { objs: any; key: string; time?: number; sign?: boolean }) {
     if (!localStorage.getItem("CACHE_" + key)) {
+      
       const dataToCache = {
         content: objs,
         item: true,
         EXP_TIME: time ? time : undefined,
+        SIGN: sign ? btoa(decodeURIComponent(encodeURIComponent(JSON.stringify(objs) + environment.lsKey))) : false,
         SVG_DATE: Date.now()
       };
 
@@ -30,17 +36,46 @@ export class LsManagerService {
       console.log(strObj);
 
       localStorage.setItem("CACHE_" + key, strObj);
-    }else{
+    } else {
       console.log("already setted");
     }
   }
 
 
-  getObj(key:string) {
+  /*  checkSign() {
+      //todo
+      const storedUserDataString = localStorage.getItem("logged_user");
+      const storedFirmaCritto = localStorage.getItem("sign");
+  
+      if (storedUserDataString !== null) {
+        const userJSON = JSON.parse(storedUserDataString);
+        const userData = JSON.stringify(userJSON);
+        const sign = btoa(decodeURIComponent(encodeURIComponent(userData + environment.lsKey)));
+  
+        // Verifica se le firme corrispondono
+        if (sign === storedFirmaCritto) {
+          if(JSON.parse(storedUserDataString).type === "u"){
+            this.user = new User(userJSON.user.name, userJSON.user.surname,
+              userJSON.user.birthdate, userJSON.user.email, userJSON.user.username, userJSON.user.id);
+          }else{
+            this.user = new Trainer(userJSON.user.name, userJSON.user.surname,
+              userJSON.user.birthdate, userJSON.user.email, userJSON.user.username, userJSON.user.id);
+          }
+          console.log("userID", userJSON.user.id);
+          return true;
+        }else{
+          this.logout();
+        }
+      }
+      return false;
+  
+    }*/
+
+  getObj(key: string) {
     let item = localStorage.getItem("CACHE_" + key);
     console.log(item);
-    return JSON.parse(item ? item : '{"item":false}') ;
-   }
+    return JSON.parse(item ? item : '{"item":false}');
+  }
 
   updateCache() { //questa procedura controlla se gli elementi nel local storage sono scaduti e li elimina in quel caso
 

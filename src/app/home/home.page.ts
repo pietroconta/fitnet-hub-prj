@@ -28,10 +28,17 @@ export class HomePage {
 
             let subscribers = response.trainer_clients;
 
-            console.log("trainer subscribers lenght", subscribers.length);
+            console.log("trainer subscribers lenght", subscribers.length); 
 
-            //mettere che se gà c'è la cache non viene ricreta (TODO)
-            this.lsManager.cacheObj(subscribers, "subscribers", 10000);
+            //mettere che se gà c'è la cache non viene ricreta (TODO)x
+            this.lsManager.cacheObj({
+              objs: subscribers,
+              key: "subscribers",
+              time: 1000,
+              sign: true
+            });
+          
+            
             console.log("push retrieved data from call api")
             this.pushOnCardDataArray(subscribers);
 
