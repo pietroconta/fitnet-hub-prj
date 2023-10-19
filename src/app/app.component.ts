@@ -12,7 +12,7 @@ register();
 })
 export class AppComponent {
   constructor(private router: Router, private usrService: AuthService, lsManager:LsManagerService) {
-    lsManager.updateCache();
+    console.log(lsManager.updateCache());
     if (!usrService.isLogged()) {
       
       this.router.navigate(["slide-screen"]);

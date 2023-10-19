@@ -17,7 +17,8 @@ export class HomePage {
 
     let subs = this.lsManager.getObj("subscribers");
     console.log("lsResponse", subs);
-    if (!subs.item) {
+    if (!subs.data.item) {
+      console.log("retrieving data from call api")
       trainerServ.getSubscribers().subscribe(
         {
 
@@ -34,12 +35,10 @@ export class HomePage {
             this.lsManager.cacheObj({
               objs: subscribers,
               key: "subscribers",
-              time: 1000,
+              time: 20000,
               sign: true
             });
           
-            
-            console.log("push retrieved data from call api")
             this.pushOnCardDataArray(subscribers);
 
             //this.updateCardTemplate(cardDataArray);
@@ -53,8 +52,8 @@ export class HomePage {
 
 
     }else{
-      console.log("push retrieved data from ls")
-      this.pushOnCardDataArray(subs.content);
+      console.log("retrieving data from ls")
+      this.pushOnCardDataArray(subs.data.content);
     }
   }
 

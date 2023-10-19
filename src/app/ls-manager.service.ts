@@ -21,13 +21,26 @@ export class LsManagerService {
   //se si inserisce sign, l'oggetto nel ls sarà protetto da modifiche da parte dell'utente
   cacheObj({ objs, key, time, sign }: { objs: any; key: string; time?: number; sign?: boolean }) {
     if (!localStorage.getItem("CACHE_" + key)) {
-      
-      const dataToCache = {
+
+      /*  const dataToCache = {
+          content: objs,
+          item: true,
+          EXP_TIME: time ? time : undefined,
+          SIGN: sign ? btoa(decodeURIComponent(encodeURIComponent(JSON.stringify(objs) + environment.lsKey))) : false,
+          SVG_DATE: Date.now()
+        };*/
+
+
+      const data = {
         content: objs,
         item: true,
         EXP_TIME: time ? time : undefined,
-        SIGN: sign ? btoa(decodeURIComponent(encodeURIComponent(JSON.stringify(objs) + environment.lsKey))) : false,
-        SVG_DATE: Date.now()
+        SVG_DATE: Date.now(),
+      }
+      const dataToCache = {
+        data: data,
+        SIGN: sign ? btoa(decodeURIComponent(encodeURIComponent(JSON.stringify(data) + environment.lsKey))) : false
+
       };
 
       let strObj = JSON.stringify(dataToCache);
@@ -74,7 +87,7 @@ export class LsManagerService {
   getObj(key: string) {
     let item = localStorage.getItem("CACHE_" + key);
     console.log(item);
-    return JSON.parse(item ? item : '{"item":false}');
+    return JSON.parse(item ? item : '{"data": {"item":false}}');
   }
 
   updateCache() { //questa procedura controlla se gli elementi nel local storage sono scaduti e li elimina in quel caso
@@ -82,23 +95,43 @@ export class LsManagerService {
     try {
       let keys: string[] = Object.keys(localStorage);
       let keysLgt = keys.length;
-
+      let result = "noaction";
       while (keysLgt--) {
         //console.log(keys[keysLgt].substring(0, 5));
         if (keys[keysLgt].substring(0, 5) == "CACHE") {
           let item = localStorage.getItem(keys[keysLgt]);
           let itemJSON = JSON.parse(item ? item : "");
-
-          if (itemJSON.SVG_DATE + itemJSON.EXP_TIME <= Date.now()) {
+         
+          let newSign = (btoa(decodeURIComponent(encodeURIComponent(JSON.stringify(JSON.parse(item ? item : "").data) + environment.lsKey))));
+          if ((itemJSON.data.SVG_DATE + itemJSON.data.EXP_TIME <= Date.now())) {
             localStorage.removeItem(keys[keysLgt]);
-            console.log("REMOVED ITEM n." + keysLgt, itemJSON);
+            result = "REMOVED ITEM n." + keysLgt + " for expired data";
+
           }
+          else if ((itemJSON.SIGN != "") && newSign != itemJSON.SIGN) {
+            localStorage.removeItem(keys[keysLgt]);
+            /* console.log("REMOVED ITEM n." + keysLgt + " for  local data manipulation:\n Retrieved sign" + 
+             newSign + "(" + JSON.parse(item ? item : "").data + ") old sign: " + itemJSON.SIGN, itemJSON);*/
+
+            result = "REMOVED ITEM n." + keysLgt + " for  local data manipulation. Retrieved sign" +
+              newSign + "(" + JSON.parse(item ? item : "").data + ") old sign: " + itemJSON.SIGN, itemJSON;
+
+          }
+
+          
+          return {
+            result: result,
+            obj: itemJSON
+          };
 
         }
 
       }
+
+      return {result: result};
     } catch (e: any) {
       console.log(e);
+      return {result: e};
     }
   }
 
