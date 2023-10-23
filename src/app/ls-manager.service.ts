@@ -20,16 +20,7 @@ export class LsManagerService {
   //se si inserisce anche il tempo, l'oggetto nel ls avrà una data di scadenza
   //se si inserisce sign, l'oggetto nel ls sarà protetto da modifiche da parte dell'utente
   cacheObj({ objs, key, time, sign }: { objs: any; key: string; time?: number; sign?: boolean }) {
-    if (!localStorage.getItem("CACHE_" + key)) {
-
-      /*  const dataToCache = {
-          content: objs,
-          item: true,
-          EXP_TIME: time ? time : undefined,
-          SIGN: sign ? btoa(decodeURIComponent(encodeURIComponent(JSON.stringify(objs) + environment.lsKey))) : false,
-          SVG_DATE: Date.now()
-        };*/
-
+ //   if (!localStorage.getItem("CACHE_" + key)) {
 
       const data = {
         content: objs,
@@ -46,47 +37,21 @@ export class LsManagerService {
       let strObj = JSON.stringify(dataToCache);
 
       // Visualizza la stringa JSON prima di memorizzarla
-      console.log(strObj);
+      //console.log(strObj);
 
       localStorage.setItem("CACHE_" + key, strObj);
-    } else {
+      /*else {
       console.log("already setted");
-    }
-  }
-
-
-  /*  checkSign() {
-      //todo
-      const storedUserDataString = localStorage.getItem("logged_user");
-      const storedFirmaCritto = localStorage.getItem("sign");
-  
-      if (storedUserDataString !== null) {
-        const userJSON = JSON.parse(storedUserDataString);
-        const userData = JSON.stringify(userJSON);
-        const sign = btoa(decodeURIComponent(encodeURIComponent(userData + environment.lsKey)));
-  
-        // Verifica se le firme corrispondono
-        if (sign === storedFirmaCritto) {
-          if(JSON.parse(storedUserDataString).type === "u"){
-            this.user = new User(userJSON.user.name, userJSON.user.surname,
-              userJSON.user.birthdate, userJSON.user.email, userJSON.user.username, userJSON.user.id);
-          }else{
-            this.user = new Trainer(userJSON.user.name, userJSON.user.surname,
-              userJSON.user.birthdate, userJSON.user.email, userJSON.user.username, userJSON.user.id);
-          }
-          console.log("userID", userJSON.user.id);
-          return true;
-        }else{
-          this.logout();
-        }
-      }
-      return false;
-  
     }*/
+    } 
+  
+
+
+  
 
   getObj(key: string) {
     let item = localStorage.getItem("CACHE_" + key);
-    console.log(item);
+   // console.log(item);
     return JSON.parse(item ? item : '{"data": {"item":false}}');
   }
 
