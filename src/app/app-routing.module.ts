@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./trainers/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '',
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'user-dashboard',
-    loadChildren: () => import('./user-dashboard/user-dashboard.module').then( m => m.UserDashboardPageModule)
+    loadChildren: () => import('./users/user-dashboard/user-dashboard.module').then( m => m.UserDashboardPageModule)
   },
   {
     path: 'slide-screen',
@@ -31,6 +31,11 @@ const routes: Routes = [
     path: 'user-trainer-view/:id',
     loadChildren: () => import('./user-trainer-view/user-trainer-view.module').then( m => m.UserTrainerViewPageModule)
   },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./trainer-tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+
 
 
 ];

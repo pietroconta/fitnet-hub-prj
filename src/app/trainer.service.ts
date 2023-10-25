@@ -12,9 +12,10 @@ export class TrainerService {
     console.log(this.authServ.isLogged());
   }
   
-  getSubscribers(){
-    return this.http.get(environment.url + "/trainers/" + this.authServ.getLoggedUser().getId() + "/subscriptions");
-  }
+  getSubscribers(limit:number = 0, offset:number = 0){
+    return this.http.get(environment.url + "/trainers/" + this.authServ.getLoggedUser().getId()
+     + "/subscriptions?offset=" + offset +"&limit=" + limit);
+  } 
 
   addSubscriber(id:string)/*from request*/{
     

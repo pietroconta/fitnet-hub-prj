@@ -1,9 +1,9 @@
 import { Component, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { TrainerService } from '../trainer.service';
-import { CardData } from '../classes';
+import { AuthService } from '../../auth.service';
+import { TrainerService } from '../../trainer.service';
+import { CardData } from '../../classes';
 import { Router } from '@angular/router';
-import { LsManagerService } from '../ls-manager.service';
+import { LsManagerService } from '../../ls-manager.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -12,14 +12,16 @@ import { LsManagerService } from '../ls-manager.service';
 
 export class HomePage {
   public cardDataArray: CardData[] = [];
+  
   @ViewChild('cards', { read: ElementRef }) cards!: ElementRef;
   constructor(private trainerServ: TrainerService, private lsManager: LsManagerService, private renderer: Renderer2, private router: Router) {
-
+    var limit:number = 5;
+    var offset:number = 0;
     let subs = this.lsManager.getObj("subscribers");
     console.log("lsResponse", subs);
     if (!subs.data.item) {
       console.log("retrieving data from call api")
-      trainerServ.getSubscribers().subscribe(
+      trainerServ.getSubscribers(limit, offset).subscribe(
         {
 
           //se c'è la cache non fare la richiesta (tempo cacheValido=10 secondi in questo caso)
