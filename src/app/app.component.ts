@@ -17,7 +17,7 @@ export class AppComponent {
       
       this.router.navigate(["slide-screen"]);
     } else usrService.getLoggedUser() instanceof Trainer ?
-       this.router.navigate(["tabs"]) : 
+       this.router.navigate(["t-tabs"]) : 
        this.router.navigate(["user-dashboard"]);
     
 

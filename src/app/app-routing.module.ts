@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./user-trainer-view/user-trainer-view.module').then( m => m.UserTrainerViewPageModule)
   },
   {
-    path: 'tabs',
+    path: 't-tabs',
     loadChildren: () => import('./trainer-tabs/tabs.module').then( m => m.TabsPageModule)
   },
 
