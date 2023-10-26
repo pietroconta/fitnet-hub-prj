@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'user-trainer-view/:id',
-    loadChildren: () => import('./trainers/user-trainer-view/user-trainer-view.module').then( m => m.UserTrainerViewPageModule)
+    loadChildren: () => import('./user-trainer-view/user-trainer-view.module').then( m => m.UserTrainerViewPageModule)
   },
   {
     path: 'tabs',
