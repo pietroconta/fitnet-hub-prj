@@ -82,6 +82,6 @@ export class HomePage {
 
   goToUserTrainerView(id: any) {
     console.log("click");
-    this.router.navigate(["user-trainer-view", id]);
+    this.router.navigate(['trainer-user-view', id]); // Assicurati che il percorso sia corretto
   }
 }

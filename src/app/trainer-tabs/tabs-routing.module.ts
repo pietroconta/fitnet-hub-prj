@@ -13,6 +13,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('../trainers/home/home.module').then((m) => m.HomePageModule),
       },
+      {
+        path: 'trainer-user-view/:id',
+        loadChildren: () => import('../trainers/user-trainer-view/user-trainer-view.module').then((m) => m.UserTrainerViewPageModule),
+      }
+
       /*{
         path: 'search',
         loadChildren: () =>
@@ -20,16 +25,17 @@ const routes: Routes = [
       },*/
       // Aggiungi altre schede qui se necessario
     ],
+
   },
   {
     path: '',
     redirectTo: 'tabs/home', // Imposta la scheda predefinita
     pathMatch: 'full',
-  },
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
