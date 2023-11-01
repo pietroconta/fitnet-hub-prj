@@ -17,19 +17,12 @@ const routes: Routes = [
         path: 'trainer-user-view/:id',
         loadChildren: () => import('../trainers/user-trainer-view/user-trainer-view.module').then((m) => m.UserTrainerViewPageModule),
       }
-
-      /*{
-        path: 'search',
-        loadChildren: () =>
-          import('../user-trainer-view/user-trainer-view-routing.module').then((m) => m.UserTrainerViewPageRoutingModule),
-      },*/
-      // Aggiungi altre schede qui se necessario
     ],
 
   },
   {
     path: '',
-    redirectTo: 'tabs/home', // Imposta la scheda predefinita
+    redirectTo: 'tabs/home',
     pathMatch: 'full',
   }
 ];

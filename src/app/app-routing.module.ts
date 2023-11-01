@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./slide-screen/slide-screen.module').then( m => m.SlideScreenPageModule)
   },
   {
-    path: 'trainer-user-view/:id',
-    loadChildren: () => import('./trainers/user-trainer-view/user-trainer-view.module').then((m) => m.UserTrainerViewPageModule),
-  },
-  {
     path: 't-tabs',
     loadChildren: () => import('./trainer-tabs/tabs.module').then( m => m.TabsPageModule)
   },
