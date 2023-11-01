@@ -81,6 +81,6 @@ export class HomePage {
   }
 
   goToUserTrainerView(id: any) {
-    this.router.navigate(['user-trainer-view', id]);
+    this.router.navigate(['t-tabs/tabs/trainer-user-view', id]);
   }
 }
