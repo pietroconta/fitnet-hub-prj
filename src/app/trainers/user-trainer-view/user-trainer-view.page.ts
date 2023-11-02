@@ -21,6 +21,10 @@ export class UserTrainerViewPage implements OnInit {
         el.usn_username, el.usn_id);
       }
     });
+
+    if(this.user == undefined){ //make api call for get missing data and set on local storage
+
+    }
     
    // let user = lsM.getObj(router.url.split("/")[4]);
     //user:User = new User();
