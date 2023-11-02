@@ -10,11 +10,10 @@ import { LsManagerService } from 'src/app/ls-manager.service';
 })
 export class UserTrainerViewPage implements OnInit {
 
-  private user!:User;
+  public user!:User;
   
   constructor(private lsM:LsManagerService, router:Router) {
     let pathId = router.url.split("/")[4];
-    var user;
     let subscribers = lsM.getObj("subscribers");
     subscribers.data.content.forEach((el:any)=> {
       if(el.usn_id == pathId){
