@@ -1,4 +1,4 @@
-/*
+    /*
  * App Global CSS
  * ----------------------------------------------------------------------------
  * Put style rules here that you want to apply globally. These styles are for
@@ -8,81 +8,89 @@
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
-
-
-/* Core CSS required for Ionic components to work properly */
-
-@import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
-
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import '@ionic/angular/css/display.css';
-
-/* Optional CSS utils that can be commented out */
-
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
-h1 {
-    font-weight: bold;
-}
-
-.ion-button {
-    --background: #3565eb;
-}
-
-.formLabel {
-    font-size: 19px;
-    margin: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.link {
-    color: #3565eb;
-    font-weight: bold;
-}
-
-.userCard {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    //z-index: 1000;
-   
-}
-
-.userCard img {
-    width: 10vh;
-}
-
-.flexTemplate {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-}
-
-.textTitle {
-    font-weight: bold;
-    font-size: 25px;
-    margin-left: 2vh;
-}
-
-.pholderImg {
-    width: 5vh; /* Imposta la larghezza del cerchio */
-    height: 5vh; /* Imposta l'altezza del cerchio (uguali per ottenere un cerchio) */
-    border-radius: 50%; /* Imposta il bordo come un cerchio con il 50% della larghezza/altezza */
-    overflow: hidden;
-  }
-
-  .pholderImg img {
-    width: 100%; /* Fai sì che l'immagine riempia tutto il cerchio */
-    height: 100%; /* Fai sì che l'immagine riempia tutto il cerchio */
-    object-fit: cover; /* Mantieni proporzioni e ritaglia l'immagine per adattarla al cerchio */
-  }
-
+    /* Core CSS required for Ionic components to work properly */
+    
+    @import "@ionic/angular/css/core.css";
+    /* Basic CSS for apps built with Ionic */
+    
+    @import "@ionic/angular/css/normalize.css";
+    @import "@ionic/angular/css/structure.css";
+    @import "@ionic/angular/css/typography.css";
+    @import '@ionic/angular/css/display.css';
+    /* Optional CSS utils that can be commented out */
+    
+    @import "@ionic/angular/css/padding.css";
+    @import "@ionic/angular/css/float-elements.css";
+    @import "@ionic/angular/css/text-alignment.css";
+    @import "@ionic/angular/css/text-transformation.css";
+    @import "@ionic/angular/css/flex-utils.css";
+    h1 {
+        font-weight: bold;
+    }
+    
+    .ion-button {
+        --background: #3565eb;
+    }
+    
+    .formLabel {
+        font-size: 19px;
+        margin: 0;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .link {
+        color: #3565eb;
+        font-weight: bold;
+    }
+    
+    .userCard {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        //z-index: 1000;
+    }
+    
+    .userCard img {
+        width: 10vh;
+    }
+    
+    .flexTemplate {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+    
+    .flexTemplate::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .textTitle {
+        font-weight: bold;
+        font-size: 25px;
+        margin-left: 2vh;
+    }
+    
+    .pholderImg {
+        width: 5vh;
+        /* Imposta la larghezza del cerchio */
+        height: 5vh;
+        /* Imposta l'altezza del cerchio (uguali per ottenere un cerchio) */
+        border-radius: 50%;
+        /* Imposta il bordo come un cerchio con il 50% della larghezza/altezza */
+        overflow: hidden;
+    }
+    
+    .pholderImg img {
+        width: 100%;
+        /* Fai sì che l'immagine riempia tutto il cerchio */
+        height: 100%;
+        /* Fai sì che l'immagine riempia tutto il cerchio */
+        object-fit: cover;
+        /* Mantieni proporzioni e ritaglia l'immagine per adattarla al cerchio */
+    }
