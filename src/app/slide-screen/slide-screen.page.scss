@@ -1,21 +1,27 @@
-.swiperIntro{
-    width: 100%;
+.swiper{
+    width: 100dvw; height: 100dvh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
+.swiper div{
+    width: 70%;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    align-items: center;
-
-    
-
 }
-
-.swiperIntro div{
-    width: 70%;
-}
-.swiperIntro h1{
+.swiper h1{
     font-size: 3.5vh;
     font-weight: bold;
 }
-.swiperIntro img{
-    width: 50vh;
+.swiper img{
+    height: 50vh;
+}
+
+.swiper span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3880FF;
+    font-weight: bold;
 }
