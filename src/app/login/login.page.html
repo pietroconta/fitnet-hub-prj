@@ -1,0 +1,41 @@
+<!--<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Login</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <div>
+
+
+        <ion-spinner *ngIf="logging"></ion-spinner>
+        <form [formGroup]="ionicForm" (ngSubmit)="login()" novalidate>
+            <ion-item lines="full">
+                <ion-input label="Email" type="email" placeholder="email@example.com" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-input label="Password" formControlName="password" type="password" placeholder="********"></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-radio-group formControlName="type" [allowEmptySelection]="false" value="users">
+                    <h3 class="formLabel">Login as:</h3>
+                    <ion-radio value="u" style="height: 30px;">User</ion-radio><br />
+                    <ion-radio value="t" style="height: 30px;">Trainer</ion-radio><br />
+                </ion-radio-group>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-button type="submit" size="small">LOGIN</ion-button>
+            </ion-item>
+
+            <ion-item lines="none">
+                Don't have an account? &nbsp;<span (click)="goToSignIn()" class="link" style="font-size: 17px;"> Signin</span>
+            </ion-item>
+        </form>
+    </div>
+</ion-content>

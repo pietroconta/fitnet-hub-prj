@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="flexTemplate" style="overflow: scroll;" *ngIf="user && user.getBirthdate()">
+        <h3 class="textTitle" *ngIf="user !== undefined && user !== null">{{"@" + user.getUsername() }}</h3>
+
+        <div class="userInfo">
+            <div class="pholderImg" style="margin-left: 5px; width: 20vh; height: 20vh;">
+                <img src="{{imgUri}}">
+
+            </div>
+            <div class="uTextInfo">
+                <h3>{{user.getName()}} {{user.getSurname()}}</h3>
+                <span>{{this.year}}</span>
+                <span>{{this.user.getWeight()}}kg</span>
+                <span>{{this.user.getHeight()}}cm</span>
+
+            </div>
+
+
+        </div>
+        <div class="uSheet">
+            <span *ngIf=""></span>
+        </div>
+    </div>
+</ion-content>

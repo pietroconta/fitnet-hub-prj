@@ -1,0 +1,7 @@
+{
+  "name": "fitnet-hub",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
