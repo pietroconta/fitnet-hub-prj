@@ -15,7 +15,7 @@ export class AuthService {
     this.token = "";
   }
 
-  setLoginSession(user: User, token: string, type: string) {
+ /* setLoginSession(user: User, token: string, type: string) {
     const userData = {
       user: user,
       type: type
@@ -29,7 +29,11 @@ export class AuthService {
     const sign = btoa(decodeURIComponent(encodeURIComponent(userDataString + environment.lsKey)));
     localStorage.setItem("sign", sign);
 
-  }
+  }*/
+
+    setLoginSession(){
+      
+    }
 
   logout() {
     this.user = null;
@@ -80,7 +84,7 @@ export class AuthService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post(environment.url + "/login", {
+    return this.http.post(environment.url + "login", {
       "email": email,
       "psw": psw,
       "type": type
@@ -103,7 +107,7 @@ export class AuthService {
       "username": username,
       "type": type
     });
-    return this.http.post(environment.url + "/signin", {
+    return this.http.post(environment.url + "signin", {
       "email": email,
       "psw": psw,
       "birthdate": birthdate,

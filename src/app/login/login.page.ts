@@ -46,9 +46,10 @@ export class LoginPage implements OnInit {
           console.log(response);
           if (response.result == "success") {
 
+            
 
             //  console.log("isLogged?", this.uService.isLogged());
-
+            /*
             if (type === "u") {
               this.uService.setLoginSession(new User(response.user.usn_name,
                 response.user.usn_surname, response.user.usn_birthdate,
@@ -59,7 +60,7 @@ export class LoginPage implements OnInit {
                 response.user.trn_surname, response.user.trn_birthdate,
                 response.user.trn_email, response.user.trn_username, response.user.trn_id), response.token, type);
               this.router.navigate(["home"]);
-            }
+            }*/
 
           }
 

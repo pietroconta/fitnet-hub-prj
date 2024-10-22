@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   lsKey: "d389smn324!lllla",
-  url: "http://192.168.0.168/"
+  url: "http://localhost:8080/"
 };
 
 /*
