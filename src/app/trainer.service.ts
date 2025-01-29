@@ -13,7 +13,7 @@ export class TrainerService {
   }
   
   getSubscribers(limit:number = 0, offset:number = 0){
-    return this.http.get(environment.url + "/trainers/" + this.authServ.getLoggedUser().getId()
+    return this.http.get(environment.url + "api/trainers/" + this.authServ.getLoggedUser().getId()
      + "/subscriptions?offset=" + offset +"&limit=" + limit);
   } 
 

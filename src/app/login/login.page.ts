@@ -45,8 +45,12 @@ export class LoginPage implements OnInit {
           this.logging = false;
           console.log(response);
           if (response.result == "success") {
-
             
+            if(response.user.type == "t"){
+              this.router.navigate(["t-tabs"]);
+            }else{
+              this.router.navigate(["user-dashboard"]);
+            }
 
             //  console.log("isLogged?", this.uService.isLogged());
             /*

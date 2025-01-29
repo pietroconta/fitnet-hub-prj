@@ -21,7 +21,7 @@ export class HomePage {
     //let subs = this.lsManager.getObj("subscribers");
     //console.log("lsResponse", subs);
     console.log("retrieving data from call api")
-    trainerServ.getSubscribers(limit, offset).subscribe(
+   /* trainerServ.getSubscribers(limit, offset).subscribe(
       {
 
 
@@ -41,7 +41,7 @@ export class HomePage {
           }
         }
       );
-
+*/
 
     
   }

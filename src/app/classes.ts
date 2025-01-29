@@ -1,8 +1,8 @@
 import { IonDatetime } from "@ionic/angular";
 
 export class User{
-    constructor(private name:string, private surname:string,
-        private birthdate:any, private email:string, private username:string, private id:string,
+    constructor(private id:string, private name?:string, private surname?:string,
+        private birthdate?:any, private email?:string, private username?:string,
         private imgUri?:any, private height?:any, private weight?:any) {
     }
 

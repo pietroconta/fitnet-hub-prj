@@ -31,13 +31,14 @@ export class AuthService {
 
   }*/
 
-    setLoginSession(){
-      
-    }
 
   logout() {
     this.user = null;
     localStorage.clear();
+  }
+
+  setLoggedUser(usr:User){
+    this.user = usr;
   }
 
   getLoggedUser(){
@@ -45,7 +46,8 @@ export class AuthService {
   }
 
 
-  isLogged() {
+
+  /*isLogged() {
     //todo
     const storedUserDataString = localStorage.getItem("logged_user");
     const storedFirmaCritto = localStorage.getItem("sign");
@@ -72,7 +74,16 @@ export class AuthService {
     }
     return false;
 
-  }
+  }*/
+
+    isLogged(){
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }), withCredentials: true
+      };
+      return this.http.post(environment.url + "api/validate", {}, httpOptions); 
+    }
 
   getInfo() {
     localStorage.getItem("jwt");
@@ -82,12 +93,14 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-      })
+      }),
+      withCredentials: true
     };
     return this.http.post(environment.url + "login", {
       "email": email,
       "psw": psw,
-      "type": type
+      "type": type,
+      
     }, httpOptions);
   }
 
