@@ -77,31 +77,24 @@ export class AuthService {
   }*/
 
     isLogged(){
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        }), withCredentials: true
-      };
-      return this.http.post(environment.url + "api/validate", {}, httpOptions); 
+      return this.http.post(environment.url + "api/validate", {}, environment.httpOptions); 
     }
+
+  refresh(){
+    return this.http.post(environment.url + "api/tokenRefresh", {}, environment.httpOptions);
+  }
 
   getInfo() {
     localStorage.getItem("jwt");
   }
 
   login(email: string, psw: string, type: string) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      withCredentials: true
-    };
     return this.http.post(environment.url + "login", {
       "email": email,
       "psw": psw,
       "type": type,
       
-    }, httpOptions);
+    }, environment.httpOptions);
   }
 
   signin(email: string, psw: string, birthdate: string, surname: string, name: string,

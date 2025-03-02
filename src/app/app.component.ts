@@ -5,6 +5,8 @@ import { register } from 'swiper/element/bundle';
 import { Trainer } from './classes';
 import { LsManagerService } from './ls-manager.service';
 import { User } from './classes';
+import { of } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 register();
 @Component({
   selector: 'app-root',
@@ -15,52 +17,33 @@ export class AppComponent {
   constructor(private router: Router, private usrService: AuthService, lsManager:LsManagerService) {
     console.log(lsManager.updateCache());
     var supCont = this;
-   /* if (!usrService.isLogged()) {
-      
-      this.router.navigate(["slide-screen"]);
-    } else usrService.getLoggedUser() instanceof Trainer ?
-       this.router.navigate(["t-tabs"]) : 
-       this.router.navigate(["user-dashboard"]);
-    */
-
-       /*
-    var ac = this;
-    usrService.isLogged().subscribe({
-      next(response:any) {
-        if(response.result == "success"){
-          ac.router.navigate(["user-dashboard"]);
-        }else{
-          ac.router.navigate(["slide-screen"]);
-        }
-        
-       
-      },
-    })*/
-      //
-      //send post on /validate endpoint to verify token
-      this.usrService.isLogged().subscribe({
-        next(response:any) {
-            
-          if(response.status == "success"){
-            console.log(response.type);
-            if(response.type == "t"){
-              supCont.usrService.setLoggedUser(new User(response.id));
-              supCont.router.navigate(["t-tabs"]);
-            }else{
-              supCont.router.navigate(["user-dashboard"]);
-            }
+   
+      //send post on /validate endpoint to verify token and try to refresh if got 401
+      this.usrService.isLogged().pipe(
+        catchError(err => {
+          console.log("Errore in isLogged(), provo refresh()", err);
+          return this.refreshSession();
+        })
+      ).subscribe(response => {
+        if (response && response.status === "success") {
+          if (response.type === "t") {
+            this.usrService.setLoggedUser(new User(response.id));
+            this.router.navigate(["t-tabs"]);
+          } else {
+            this.router.navigate(["user-dashboard"]);
           }
-        },
-        error(err) {
-          supCont.router.navigate(["slide-screen"]);
-          console.log(err);
         }
+      });
+  }
+
+  private refreshSession(): Observable<any> {
+    return this.usrService.refresh().pipe(
+      catchError(err => {
+        console.log("Refresh fallito, reindirizzo a slide-screen", err);
+        this.router.navigate(["slide-screen"]);
+        return of(null);
       })
-
-     
-
-
-
+    );
   }
 
 }
